@@ -2,38 +2,61 @@
 This project lets you try out Tkinter/Ttk and practice it!
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Isaiah Jolly.
+# """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import tkinter
 from tkinter import ttk
+import time
 
+def print_string(box):
+    if box.get() == 'ok':
+        print('Hello')
+    else:
+        print('Goodbye')
+
+
+def print_many_strings(string_box, number_box):
+    n = int(number_box.get())
+    for k in range(n):
+        print(string_box.get())
+        time.sleep(0.5)
 
 def main():
     """ Constructs a GUI with stuff on it. """
     # ------------------------------------------------------------------
-    # TODO: 2. After reading and understanding the m1e module,
+    # DONE: 2. After reading and understanding the m1e module,
     #   ** make a window that shows up. **
     # ------------------------------------------------------------------
 
+    win = tkinter.Tk()
+
     # ------------------------------------------------------------------
-    # TODO: 3. After reading and understanding the m2e module,
+    # DONE: 3. After reading and understanding the m2e module,
     #   ** put a Frame on the window. **
     # ------------------------------------------------------------------
 
+    frame1 = ttk.Frame(win, padding=20)
+    frame1.grid()
+
     # ------------------------------------------------------------------
-    # TODO: 4. After reading and understanding the m2e module,
+    # DONE After reading and understanding the m2e module,
     #   ** put a Button on the Frame. **
     # ------------------------------------------------------------------
 
+    button1 = ttk.Button(frame1, text='Click me!')
+
     # ------------------------------------------------------------------
-    # TODO: 5. After reading and understanding the m3e module,
+    # DONE: 5. After reading and understanding the m3e module,
     #   ** make your Button respond to a button-press **
     #   ** by printing   "Hello"  on the Console.     **
     # ------------------------------------------------------------------
 
+    button1['command'] = (lambda: print('Hello'))
+    button1.grid()
+
     # ------------------------------------------------------------------
-    # TODO: 6. After reading and understanding the m4e module,
+    # DONE: 6. After reading and understanding the m4e module,
     #   -- Put an Entry box on the Frame.
     #   -- Put a second Button on the Frame.
     #   -- Make this new Button, when pressed, print "Hello"
@@ -41,8 +64,15 @@ def main():
     #        is the string 'ok', but print "Goodbye" otherwise.
     # ------------------------------------------------------------------
 
+    box1 = ttk.Entry(frame1)
+    box1.grid()
+
+    button2 = ttk.Button(frame1, text='Click me instead!')
+    button2['command'] = (lambda: print_string(box1))
+    button2.grid()
+
     # ------------------------------------------------------------------
-    # TODO: 7.
+    # DONE: 7.
     #    -- Put a second Entry on the Frame.
     #    -- Put a third Button on the frame.
     #    -- Make this new Button respond to a button-press as follows:
@@ -65,9 +95,18 @@ def main():
     #      n = int(s)
     ####################################################################
 
+    box2 = ttk.Entry(frame1)
+    box2.grid()
+
+    button3 = ttk.Button(frame1, text='Best button to click!')
+    button3['command'] = (lambda: print_many_strings(box1, box2))
+    button3.grid()
+
     # ------------------------------------------------------------------
-    # TODO: 8. As time permits, do other interesting GUI things!
+    # DONE: 8. As time permits, do other interesting GUI things!
     # ------------------------------------------------------------------
+
+    win.mainloop()
 
 
 # ----------------------------------------------------------------------
